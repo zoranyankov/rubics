@@ -1,5 +1,6 @@
+const express = require('express');
 const env = process.env.NODE_ENV.trim() || 'development';
-const app = require('express')();
+const app = express();
 const config = require('./config/config')[env];
 const handlebars = require('express-handlebars');
 
@@ -9,6 +10,8 @@ app.engine('hbs', handlebars({
     extname: 'hbs',
 }))
 app.set('view engine', 'hbs');
+
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
     res.redirect('/products');
