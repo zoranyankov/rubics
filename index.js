@@ -1,17 +1,7 @@
 const express = require('express');
-const env = process.env.NODE_ENV.trim() || 'development';
 const app = express();
-const config = require('./config/config')[env];
-const handlebars = require('express-handlebars');
 
-app.listen(config.PORT, () => console.log(`Server is listening on port:${config.PORT}...`));
-
-app.engine('hbs', handlebars({
-    extname: 'hbs',
-}))
-app.set('view engine', 'hbs');
-
-app.use(express.static('public'));
+require('./config/express')(app);
 
 app.get('/', (req, res) => {
     res.redirect('/products');
