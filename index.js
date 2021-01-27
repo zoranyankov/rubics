@@ -11,12 +11,14 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
+    res.redirect('/products');
+})
+app.get('/products', (req, res) => {
     res.render('home');
-    // , (err, html) => {
-    //     if (err) {
-    //         return console.log(err);
-    //     }
-    //     console.log(html);
-    //     res.send(html)
-    // })
+})
+app.get('/about', (req, res) => {
+    res.render('about');
+})
+app.get('/products/create', (req, res) => {
+    res.render('create');
 })
