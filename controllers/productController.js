@@ -4,7 +4,9 @@ const router = Router();
 
 router.get('/', (req, res) => {
     const cubes = productService.getAll(req.query);
-    res.render('home', { cubes });
+    const content = req.query.search ? { cubes, 'inSearch': true } : { cubes };
+    console.log(content);
+    res.render('home', content);
 })
 router.get('/create', (req, res) => {
     res.render('create');
@@ -19,7 +21,7 @@ router.post('/create', (req, res) => {
 })
 router.get('/details/:_id', (req, res) => {
     const currentCube = productService.getOne(req.params._id)
-    res.render('details', { ...currentCube });
+    res.render('details', {...currentCube });
 })
 
 
