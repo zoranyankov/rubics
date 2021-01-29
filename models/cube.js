@@ -1,12 +1,12 @@
 const uniqid = require('uniqid');
 
 class Cube {
-    constructor(name, description, imageUrl, dificultyLevel) {
-        uniqid();
+    constructor({name, description, imageUrl, difficultyLevel}) {
+        this._id = uniqid();
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.dificultyLevel = dificultyLevel;
+        this.difficultyLevel = difficultyLevel;
     }
 }
 
