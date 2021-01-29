@@ -1,12 +1,12 @@
 const { Router } = require('express');
 const productService = require('../services/productServices');
-const uniqid = require('uniqid');
 
 const router = Router();
 
 router.get('/', (req, res) => {
     productService.getAll(req.query)
         .then(cubes => {
+            console.log(cubes);
             const content = req.query.search ? { cubes, 'inSearch': true } : { cubes };
             res.render('home', content);
         })
@@ -16,7 +16,8 @@ router.get('/create', (req, res) => {
     res.render('create');
 })
 router.post('/create', (req, res) => {
-    productService.create({...req.body, _id: uniqid() })
+    // productService.create({...req.body, _id: uniqid() })
+    productService.create({...req.body})
         .then(data => {
             console.log(data);
             res.redirect('/products');

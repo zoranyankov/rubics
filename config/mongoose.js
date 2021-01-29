@@ -5,8 +5,10 @@ function mongooseConfig() {
 
     mongoose.connect(cubesDB, { useNewUrlParser: true, useUnifiedTopology: true });
     const db = mongoose.connection;
-    db.on('error', (err) => console.log('Error: ' + err));
-    db.on('open', () => console.log('CubesDB connected...'))
+    db.on('error', console.error.bind(console, 'Error: '));
+    db.once('open', console.log.bind(console, 'CubesDB connected...'))
+    // db.on('error', (err) => console.log('Error: ' + err));
+    // db.once('open', () => console.log('CubesDB connected...'))
 }
 
 module.exports = mongooseConfig;

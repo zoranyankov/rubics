@@ -15,7 +15,6 @@
 const mongoose = require('mongoose');
 
 const cubeSchema = new mongoose.Schema({
-    _id: String,
     name: String,
     description: String,
     imageUrl: String,
