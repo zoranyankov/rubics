@@ -4,8 +4,9 @@ const pathToCubes = path.normalize(__dirname + '/cubes.json');
 const cubesData = require('./cubes.json');
 
 function create(newOne) {
-    cubesData.push(newOne)
-    return fs.writeFile(pathToCubes, JSON.stringify(cubesData));
+
+    // cubesData.push(newOne)
+    // return fs.writeFile(pathToCubes, JSON.stringify(cubesData));
 }
 
 function getAll() {
