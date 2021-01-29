@@ -6,6 +6,10 @@ function create(data) {
     return new Cube({...data }).save();
 }
 
+function clear(data) {
+    return Cube.deleteMany({});
+}
+
 function getAll(query) {
     return Cube.find({}).lean();
     // const { search, from, to } = query;
@@ -31,5 +35,6 @@ function getOne(_id) {
 module.exports = {
     create,
     getAll,
-    getOne
+    getOne,
+    clear
 };

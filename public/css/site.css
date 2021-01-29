@@ -205,6 +205,21 @@ input[type=submit] {
     border-radius: 4px;
 }
 
+#clear {
+    background-color: red;
+    border: none;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    width: 30%;
+    margin: 5px 5px 5px 5px;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
 input[type=submit]:hover {
     background-color: #718F94;
     cursor: pointer;
@@ -237,6 +252,9 @@ span.error {
 img#sadFaceImg {
     display: block;
     margin: 0 auto;
+    border: 1px solid #2b415433;
+    border-radius: 3rem;
+    box-shadow: 0px 0px 20px 5px rgb(255, 0, 21);
 }
 
 h2,
