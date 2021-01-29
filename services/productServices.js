@@ -8,17 +8,16 @@ function create(data) {
 }
 
 function getAll(query) {
-    console.log(query);
-    const {search, from, to} = query;
+    const { search, from, to } = query;
     let products = productData.getAll();
 
-    if(search) {
+    if (search) {
         products = products.filter(x => x.name.toLocaleLowerCase().includes(search));
     }
-    if(from) {
+    if (from) {
         products = products.filter(x => x.difficultyLevel >= from);
     }
-    if(to) {
+    if (to) {
         products = products.filter(x => x.difficultyLevel <= to);
     }
 
