@@ -13,20 +13,22 @@ router.get('/:_id/attach', (req, res) => {
 router.post('/:_id/attach', (req, res) => {
     const productId = req.params._id;
     const accessoryId = req.body.accessory;
-   productServices.attachAccessory(productId, accessoryId)
-   .then(() => res.redirect(`/products/details/${productId}`))
-    .catch(err => console.log('Error: ' + err));
+
+//    productServices.attachAccessory(productId, accessoryId)
+//    .then(() => res.redirect(`/products/details/${productId}`))
+//     .catch(err => console.log('Error: ' + err));
 
     // const accessoryId = req.body.accessory;
     // const productId = req.params._id;
-    // productServices.getOne(productId)
-    // .then(cube => {
-    //     console.log(cube);
-    //     cube.accessories.push(accessoryId);
-    //     console.log(cube);
-    //     cube.save();
-    // })
-    // .catch(err => console.log('Error: ' + err));
+    productServices.getOne2(productId)
+    .then(cube => {
+        console.log(cube);
+        cube.accessories.push(accessoryId);
+        console.log(cube);
+        cube.save();
+        res.redirect(`/products/details/${productId}`)
+    })
+    .catch(err => console.log('Error: ' + err));
 });
 router.get('/create', (req, res) => {
     res.render('createAccessory');
