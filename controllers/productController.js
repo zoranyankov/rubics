@@ -18,7 +18,7 @@ router.post('/create', (req, res) => {
     // productService.create({...req.body, _id: uniqid() })
     productService.create({...req.body})
         .then(data => {
-            console.log(data);
+            // console.log(data);
             res.redirect('/products');
         })
         .catch(err => console.log('Error : ' + err));

@@ -1,9 +1,12 @@
+const env = process.env.NODE_ENV.trim() || 'development';
+const config = require('./config')[env];
+const mongoose = require('mongoose');
+
 function mongooseConfig() {
-    const mongoose = require('mongoose');
 
-    const cubesDB = 'mongodb://localhost:27017/CubesDB';
+    // const cubesDB = 'mongodb://localhost:27017/CubesDB';
 
-    mongoose.connect(cubesDB, { useNewUrlParser: true, useUnifiedTopology: true });
+    mongoose.connect(config.DB_PATH, { useNewUrlParser: true, useUnifiedTopology: true });
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'Error: '));
     db.once('open', console.log.bind(console, 'CubesDB connected...'))
