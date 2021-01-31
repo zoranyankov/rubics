@@ -1,11 +1,13 @@
 const { Router } = require('express');
 const router = Router();
 
-const homeControler = require('./controllers/homeControler');
+const homeController = require('./controllers/homeController');
 const productController = require('./controllers/productController');
+const accessoryController = require('./controllers/accessoryController');
 
-router.use('/', homeControler);
+router.use('/', homeController);
 router.use('/products', productController);
+router.use('/accessories', accessoryController);
 router.get('*', (req, res) => {
     res.render('404');
 })

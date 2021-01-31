@@ -1,5 +1,5 @@
 // const productData = require('../data/productData');
-const Cube = require('../models/cube');
+const Cube = require('../models/Cube');
 
 
 function create(data) {
