@@ -1,31 +1,26 @@
-const productData = require('../data/productData');
+// const productData = require('../data/productData');
 const Cube = require('../models/cube');
 
 
 function create(data) {
-    return new Cube({...data }).save();
+    return new Cube(data).save();
 }
 
 function clear(data) {
     return Cube.deleteMany({});
 }
 
-function getAll(query) {
+async function getAll(query) {
+    let { search, from, to } = query;
+    // let founded = Cube.find({}).lean();
+    if (search || from || to) {
+        from = from || Number.MIN_SAFE_INTEGER;
+        to = to || Number.MAX_SAFE_INTEGER;
+        let patt = new RegExp(search, 'i');
+        let founded = Cube.find({$and: [{ name: patt}, {difficultyLevel: {$gte: from}},{difficultyLevel: {$lte: to}}],}).lean();
+        return (founded);
+    }
     return Cube.find({}).lean();
-    // const { search, from, to } = query;
-    // let products = productData.getAll();
-
-    // if (search) {
-    //     products = products.filter(x => x.name.toLocaleLowerCase().includes(search));
-    // }
-    // if (from) {
-    //     products = products.filter(x => x.difficultyLevel >= from);
-    // }
-    // if (to) {
-    //     products = products.filter(x => x.difficultyLevel <= to);
-    // }
-
-    // return products;
 }
 
 function getOne(_id) {

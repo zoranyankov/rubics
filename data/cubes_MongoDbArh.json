@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "6016a3790021ca0f0c974591"
+  },
+  "name": "Gan356 Air SM",
+  "description": "Some description",
+  "imageUrl": "https://i5.walmartimages.ca/images/Large/492/641/6000198492641.jpg",
+  "difficultyLevel": 2,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6016a3960021ca0f0c974592"
+  },
+  "name": "Eco-Dark",
+  "description": "Some darkone Cube",
+  "imageUrl": "https://i.pinimg.com/originals/d3/38/72/d33872e02a78fe191fcfd49ced3ce7cd.png",
+  "difficultyLevel": 5,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6016a3b20021ca0f0c974593"
+  },
+  "name": "Pyraminx",
+  "description": "Pyramidal cubix",
+  "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
+  "difficultyLevel": 1,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6016a3d20021ca0f0c974594"
+  },
+  "name": "Some Name 3",
+  "description": "Some other Cube",
+  "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61sIm7N23hL._SX355_.jpg",
+  "difficultyLevel": 3,
+  "__v": 0
+}]

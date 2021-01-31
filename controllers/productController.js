@@ -6,7 +6,6 @@ const router = Router();
 router.get('/', (req, res) => {
     productService.getAll(req.query)
         .then(cubes => {
-            console.log(cubes);
             const content = req.query.search ? { cubes, 'inSearch': true } : { cubes };
             res.render('home', content);
         })
