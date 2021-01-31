@@ -27,9 +27,6 @@ async function getAll(query) {
 function getOne(_id) {
     return Cube.findById(_id).lean();
 }
-function getOne2(_id) {
-    return Cube.findById(_id);
-}
 
 function getOnePopulated(_id) {
     return Cube.findById(_id).populate('accessories').lean();
@@ -50,5 +47,4 @@ module.exports = {
     clear,
     attachAccessory,
     getOnePopulated,
-    getOne2,
 };

@@ -3,6 +3,7 @@
   <div class="form">
     <h2>Rubiks Cube</h2>
     <img class="cube" src="https://images-na.ssl-images-amazon.com/images/I/71WS9kb-JFL._SL1300_.jpg">
+    {{#if accessories}}
     <form action='' method="POST">
       <label for="accessory">Accessories</label>
       <select id="accessory" name="accessory">
@@ -12,7 +13,7 @@
       </select>
       <input type="submit" value="Attach">
     </form>
-    {{#if hasAllAccessories}}
+    {{else}}
     <h3 class="italic">This cube has all available accessories so far or there is no available at all...
     </h3>
     {{/if}}
