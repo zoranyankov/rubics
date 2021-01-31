@@ -24,7 +24,7 @@ router.post('/create', (req, res) => {
         .catch(err => console.log('Error : ' + err));
 })
 router.get('/details/:_id', (req, res) => {
-    productService.getOne(req.params._id)
+    productService.getOnePopulated(req.params._id)
         .then((currentCube) => {
             res.render('details', {...currentCube });
         })
