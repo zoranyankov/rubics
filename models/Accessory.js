@@ -25,3 +25,5 @@ const accessorySchema = mongoose.Schema({
         ref: 'Cube',
     }
 })
+
+module.exports = mongoose.model('Accessory', accessorySchema);

@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    background-image: url('/images/background.png');
 }
 
 header ul {
@@ -17,15 +16,9 @@ img {
 }
 
 img.cube {
-    display: inline-block;
-    border: 1px solid #2b415433;
-    /* margin: 0 auto; */
+    display: block;
+    margin: 0 auto;
     text-align: center;
-    border-radius: 3rem;
-    margin: 1.5rem 1rem;
-    box-shadow: 0px 0px 20px 5px blue;
-    width: 10rem;
-    height: 10rem;
 }
 
 img.logo {
@@ -77,13 +70,9 @@ h1 {
 
 div.cube {
     display: inline-block;
-    text-align: center;
     border: 1px solid #2b415433;
-    border-radius: 3rem;
-    margin: 1.5rem;
-    box-shadow: 0px 5px 20px 7px orange;
     background: white;
-    width: 20%;
+    width: 23%;
     vertical-align: top;
 }
 
@@ -101,8 +90,8 @@ p.name {
     border-bottom: 1px solid #2b415433;
 }
 
-button,
-main a.btn {
+
+button, main a.btn {
     border: none;
     padding: 8px;
     text-align: center;
@@ -111,7 +100,6 @@ main a.btn {
     font-size: 18px;
     width: 35%;
     margin: 12px;
-    margin-left: 6%;
     border-radius: 4px;
     background: #607588;
     color: white;
@@ -135,11 +123,6 @@ div.details {
     width: 50%;
     background-color: #f3f3f2;
     padding: 1em;
-    text-align: center;
-    border: 1px solid #2b415433;
-    border-radius: 3rem;
-    /* margin: 1.5rem; !!!!! */
-    box-shadow: 0px 5px 20px 7px green;
 }
 
 span {
@@ -156,6 +139,7 @@ div.about {
     background-color: #f3f3f2;
     padding: 3em;
 }
+
 
 div.about a {
     text-decoration: none;
@@ -207,21 +191,6 @@ input[type=submit] {
     border-radius: 4px;
 }
 
-#clear {
-    background-color: red;
-    border: none;
-    padding: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    width: 30%;
-    margin: 5px 5px 5px 5px;
-    color: white;
-    text-transform: uppercase;
-    border-radius: 4px;
-}
-
 input[type=submit]:hover {
     background-color: #718F94;
     cursor: pointer;
@@ -251,17 +220,26 @@ span.error {
     display: block;
 }
 
-img#sadFaceImg {
+img#sadFaceImg{
     display: block;
     margin: 0 auto;
-    border: 1px solid #2b415433;
-    border-radius: 3rem;
-    box-shadow: 0px 0px 20px 5px rgb(255, 0, 21);
 }
 
-h2,
-h3 {
+h2{
     text-align: center;
+}
+
+.accessories .accessory{
+    display: inline-block;
+    background-color: #f3f3f2;
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+
+.accessories, .italic{
+    text-align: center;
+    font-style: italic;
 }
 
 footer {
@@ -272,14 +250,15 @@ footer {
     font-size: 20px;
 }
 
-
 /*Animations & Transitions
 */
+
 
 @-webkit-keyframes fadeOut {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -289,6 +268,7 @@ footer {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }

@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
         .catch(err => console.log('Error: ' + err));
 })
 router.get('/create', (req, res) => {
-    res.render('create');
+    res.render('createCube');
 })
 router.post('/create', (req, res) => {
     // productService.create({...req.body, _id: uniqid() })
