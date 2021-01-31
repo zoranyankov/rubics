@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const productService = require('../services/productServices');
+const cubeService = require('../services/cubeServices');
 
 const router = Router();
 
 router.get('/', (req, res) => {
-    productService.getAll(req.query)
+    cubeService.getAll(req.query)
         .then(cubes => {
             const content = req.query.search ? { cubes, 'inSearch': true } : { cubes };
             res.render('home', content);
@@ -15,26 +15,21 @@ router.get('/create', (req, res) => {
     res.render('createCube');
 })
 router.post('/create', (req, res) => {
-    // productService.create({...req.body, _id: uniqid() })
-    productService.create({...req.body})
+    cubeService.create({...req.body})
         .then(data => {
             // console.log(data);
-            res.redirect('/products');
+            res.redirect('/cubes');
         })
         .catch(err => console.log('Error : ' + err));
 })
 router.get('/details/:_id', (req, res) => {
-    productService.getOnePopulated(req.params._id)
-        .then((currentCube) => {
-            res.render('details', {...currentCube });
-        })
+    cubeService.getOnePopulated(req.params._id)
+        .then((currentCube) => res.render('details', {...currentCube }))
         .catch(err => console.log('Error : ' + err));
 })
 router.get('/clearDB', (req, res) => {
-    productService.clear()
-        .then((data) => {
-            res.redirect('/products');
-        })
+    cubeService.clear()
+        .then((data) => res.redirect('/cubes'))
         .catch(err => console.log('Error : ' + err));
 })
 

@@ -1,4 +1,3 @@
-// const productData = require('../data/productData');
 const Cube = require('../models/Cube');
 const Accessory = require('../models/Accessory');
 
@@ -13,7 +12,6 @@ function clear(data) {
 
 async function getAll(query) {
     let { search, from, to } = query;
-    // let founded = Cube.find({}).lean();
     if (search || from || to) {
         from = from || Number.MIN_SAFE_INTEGER;
         to = to || Number.MAX_SAFE_INTEGER;
@@ -32,12 +30,12 @@ function getOnePopulated(_id) {
     return Cube.findById(_id).populate('accessories').lean();
 }
 
-async function attachAccessory(productId, accessoryId) {
-    let product = await Cube.findById(productId);
+async function attachAccessory(cubeId, accessoryId) {
+    let cube = await Cube.findById(cubeId);
     let accessory = await Accessory.findById(accessoryId);
 
-    product.accessories.push(accessory);
-    return product.save()
+    cube.accessories.push(accessory);
+    return cube.save()
 }
 
 module.exports = {

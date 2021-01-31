@@ -1,6 +1,6 @@
 <main>
     <h1>Browser</h1>
-    <form action="/products" method="GET">
+    <form action="/cubes" method="GET">
         <input type="text" class="search" name="search" placeholder="Search...">
         <input type="number" name="from" class="difficulty" placeholder="Difficulty from...">
         <span>-</span>
@@ -17,13 +17,13 @@
         <h1>NO MATCHING CUBES...</h1>
         {{else}}
         <h1>STILL NO CUBES...</h1>
-        <h3>you can create some from here: .. <a href="/products/create" style="color: green">go to Create Page</a></h3>
+        <h3>you can create some from here: .. <a href="/cubes/create" style="color: green">go to Create Page</a></h3>
         {{/if}}
         {{!-- <a href=></a>? --}}
         {{/each}}
     </div>
     {{#if cubes}}
-    <a id="clear" href="/products/clearDB">CLEAR CUBES DB (no return!!!)</a>
+    <a id="clear" href="/cubes/clearDB">CLEAR CUBES DB (no return!!!)</a>
     {{/if}}
 
 </main>

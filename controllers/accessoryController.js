@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const accessoryService = require('../services/accessoryService');
-const productServices = require('../services/productServices');
+const cubeServices = require('../services/cubeServices');
 
 router.get('/:_id/attach', (req, res) => {
     const _id = req.params._id;
@@ -12,10 +12,10 @@ router.get('/:_id/attach', (req, res) => {
         .catch(err => console.log('Error: ' + err));
 });
 router.post('/:_id/attach', (req, res) => {
-    const productId = req.params._id;
+    const cubeId = req.params._id;
     const accessoryId = req.body.accessory;
-    productServices.attachAccessory(productId, accessoryId)
-        .then(() => res.redirect(`/products/details/${productId}`))
+    cubeServices.attachAccessory(cubeId, accessoryId)
+        .then(() => res.redirect(`/cubes/details/${cubeId}`))
         .catch(err => console.log('Error: ' + err));
 });
 router.get('/create', (req, res) => {
@@ -23,7 +23,7 @@ router.get('/create', (req, res) => {
 });
 router.post('/create', (req, res) => {
     accessoryService.create(req.body)
-        .then(data => res.redirect('products'))
+        .then(data => res.redirect('cubes'))
         .catch(err => console.log('Error: ' + err));
 });
 
