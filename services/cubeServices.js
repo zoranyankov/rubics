@@ -6,7 +6,7 @@ function create(data) {
     return new Cube(data).save();
 }
 
-function clear(data) {
+function clear() {
     return Cube.deleteMany({});
 }
 

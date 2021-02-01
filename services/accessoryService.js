@@ -9,8 +9,12 @@ async function getAll(_id) {
     let addedAccessories = currCube.accessories;
     return Accessory.find({_id: {$nin: addedAccessories}}).lean();
 }
+function clear() {
+    return Accessory.deleteMany({});
+}
 
 module.exports = {
     create,
     getAll,
+    clear,
 }

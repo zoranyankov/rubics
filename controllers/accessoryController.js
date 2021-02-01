@@ -23,9 +23,14 @@ router.get('/create', (req, res) => {
 });
 router.post('/create', (req, res) => {
     accessoryService.create(req.body)
-        .then(data => res.redirect('cubes'))
+        .then(data => res.redirect('/cubes'))
         .catch(err => console.log('Error: ' + err));
 });
+router.get('/clearDB', (req, res) => {
+    accessoryService.clear()
+        .then((data) => res.redirect('/cubes'))
+        .catch(err => console.log('Error : ' + err));
+})
 
 
 module.exports = router;
