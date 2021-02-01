@@ -1,0 +1,8 @@
+[
+    { "opId": "1", "value": "1 - Very Easy" },
+    { "opId": "2", "value": "2 - Easy" },
+    { "opId": "3", "value": "3 - Medium (Standard 3x3)" },
+    { "opId": "4", "value": "4 - Intermediate" },
+    { "opId": "5", "value": "5 - Expert" },
+    { "opId": "6", "value": "6 - Hardcore" }
+]

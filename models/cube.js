@@ -18,6 +18,7 @@ const cubeSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'need to specify Name'],
+        maxlength: 15,
     },
     description: {
         type: String,

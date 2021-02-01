@@ -30,6 +30,18 @@ function getOnePopulated(_id) {
     return Cube.findById(_id).populate('accessories').lean();
 }
 
+function edit(_id) {
+    return Cube.findById(_id).populate('accessories').lean();
+}
+
+function update(_id, data) {
+    return Cube.findByIdAndUpdate(_id, data).populate('accessories').lean();
+}
+
+function removeOne(_id) {
+    return Cube.findByIdAndRemove(_id);
+}
+
 async function attachAccessory(cubeId, accessoryId) {
     let cube = await Cube.findById(cubeId);
     let accessory = await Accessory.findById(accessoryId);
@@ -45,4 +57,7 @@ module.exports = {
     clear,
     attachAccessory,
     getOnePopulated,
+    edit,
+    removeOne,
+    update,
 };
