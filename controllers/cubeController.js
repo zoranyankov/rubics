@@ -31,7 +31,10 @@ router.post('/create', (req, res) => {
 });
 router.get('/details/:_id', (req, res) => {
     cubeService.getOnePopulated(req.params._id)
-        .then((currentCube) => res.render('details', { ...currentCube }))
+        .then((currentCube) => {
+            currentCube.accessories.forEach(x => x.prod_id = req.params._id)
+            res.render('details', { ...currentCube });
+        })
         .catch(err => console.log('Error : ' + err));
 });
 router.get('/edit/:_id', (req, res) => {

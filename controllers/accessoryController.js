@@ -12,10 +12,17 @@ router.get('/:_id/attach', async(req, res) => {
         })
         .catch(err => console.log('Error: ' + err));
 });
-router.post('/:_id/attach', (req, res) => {
-    const cubeId = req.params._id;
+router.post('/:prod_id/attach', (req, res) => {
+    const cubeId = req.params.prod_id;
     const accessoryId = req.body.accessory;
     cubeServices.attachAccessory(cubeId, accessoryId)
+        .then(() => res.redirect(`/cubes/details/${cubeId}`))
+        .catch(err => console.log('Error: ' + err));
+});
+router.get('/:prod_id/remove/:_id', (req, res) => {
+    const cubeId = req.params.prod_id;
+    const accessoryId = req.params._id;
+    cubeServices.detachAccessory(cubeId, accessoryId)
         .then(() => res.redirect(`/cubes/details/${cubeId}`))
         .catch(err => console.log('Error: ' + err));
 });

@@ -272,7 +272,7 @@ h3 {
     margin: 1%;
     border: 1px solid #2b415433;
     border-radius: 3rem;
-    box-shadow: 0px 0px 20px 5px rgb(255, 0, 21);
+    box-shadow: 0px 0px 20px 5px rgb(255, 153, 0);
 }
 
 .accessories, .italic{
@@ -294,6 +294,18 @@ footer {
     text-align: center;
     color: white;
     font-size: 20px;
+}
+
+.detachAccessory img {
+    text-align: center;
+    position: absolute;
+    background-image: url('https://p1.hiclipart.com/preview/634/931/750/check-mark-logo-symbol-sign-semiotics-x-mark-red-png-clipart.jpg');
+    width: 3rem;
+    height: 3rem;
+    margin-left: 12%;
+    margin-top: 0%;
+    box-shadow: none;
+
 }
 
 /*Animations & Transitions

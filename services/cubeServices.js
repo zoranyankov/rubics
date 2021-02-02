@@ -16,7 +16,7 @@ async function getAll(query) {
         from = from || Number.MIN_SAFE_INTEGER;
         to = to || Number.MAX_SAFE_INTEGER;
         let patt = new RegExp(search, 'i');
-        let founded = Cube.find({$and: [{ name: patt}, {difficultyLevel: {$gte: from}},{difficultyLevel: {$lte: to}}],}).lean();
+        let founded = Cube.find({ $and: [{ name: patt }, { difficultyLevel: { $gte: from } }, { difficultyLevel: { $lte: to } }], }).lean();
         return (founded);
     }
     return Cube.find({}).lean();
@@ -50,12 +50,19 @@ async function attachAccessory(cubeId, accessoryId) {
     return cube.save()
 }
 
+async function detachAccessory(cubeId, accessoryId) {
+    let cube = await Cube.findById(cubeId);
+    cube.accessories = cube.accessories.filter(x => x._id != accessoryId);
+    return cube.save()
+}
+
 module.exports = {
     create,
     getAll,
     getOne,
     clear,
     attachAccessory,
+    detachAccessory,
     getOnePopulated,
     edit,
     removeOne,
