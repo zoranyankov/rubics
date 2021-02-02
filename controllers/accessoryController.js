@@ -3,11 +3,12 @@ const router = Router();
 const accessoryService = require('../services/accessoryService');
 const cubeServices = require('../services/cubeServices');
 
-router.get('/:_id/attach', (req, res) => {
+router.get('/:_id/attach', async(req, res) => {
     const _id = req.params._id;
+    const currCube = await cubeServices.getOne(_id);
     accessoryService.getAll(_id)
         .then(accessories => {
-            res.render('attachAccessory', { accessories, _id });
+            res.render('attachAccessory', {...currCube, accessories, _id });
         })
         .catch(err => console.log('Error: ' + err));
 });
