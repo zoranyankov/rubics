@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const cubeService = require('../services/cubeServices');
-const {selectActiveDifficulty, clearSelected} = require('./helpers/selectActiveOption');
+const { selectActiveDifficulty, clearSelected } = require('./helpers/selectActiveOption');
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 router.get('/create', (req, res) => {
     const options = clearSelected();   //TODO: Must find better way
-    res.render('createCube', { options, type: 'Create' });
+    res.render('createCube', { options });
 });
 router.post('/create', (req, res) => {
     cubeService.create({ ...req.body })
@@ -35,19 +35,27 @@ router.get('/edit/:_id', (req, res) => {
     cubeService.getOnePopulated(req.params._id)
         .then((data) => {
             const options = selectActiveDifficulty(data.difficultyLevel); //TODO: is there a better way?
-            res.render('createCube', { ...data, options, type: 'Edit' })
+            res.render('editCube', { ...data, options })
         })
         .catch(err => console.log('Error : ' + err));
 });
 router.post('/edit/:_id', (req, res) => {
     cubeService.update(req.params._id, { ...req.body })
-    .then(data => {
-        // console.log(data);
-        res.redirect(`/cubes/details/${data._id}`);
+        .then(data => {
+            // console.log(data);
+            res.redirect(`/cubes/details/${data._id}`);
+        })
+        .catch(err => console.log('Error : ' + err));
+});
+router.get('/delete/:_id', (req, res) => {
+    cubeService.getOnePopulated(req.params._id)
+    .then((data) => {
+        const options = selectActiveDifficulty(data.difficultyLevel); //TODO: is there a better way?
+        res.render('deleteCube', { ...data, options })
     })
     .catch(err => console.log('Error : ' + err));
 });
-router.get('/delete/:_id', (req, res) => {
+router.post('/delete/:_id', (req, res) => {
     cubeService.removeOne(req.params._id)
         .then((data) => res.redirect('/cubes'))
         .catch(err => console.log('Error : ' + err));
