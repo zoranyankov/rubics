@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const cubeService = require('../services/cubeServices');
-const optionsDB = require('../data/options.json');
-
+const {selectActiveDifficulty, clearSelected} = require('./helpers/selectActiveOption');
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -13,12 +12,7 @@ router.get('/', (req, res) => {
         .catch(err => console.log('Error: ' + err));
 });
 router.get('/create', (req, res) => {
-    const options = optionsDB.map(row => { //TODO: Must find better way
-        if (row.isSelected) {
-            delete row.isSelected;
-        }
-        return row;
-    });
+    const options = clearSelected();   //TODO: Must find better way
     res.render('createCube', { options, type: 'Create' });
 });
 router.post('/create', (req, res) => {
@@ -40,12 +34,7 @@ router.get('/details/:_id', (req, res) => {
 router.get('/edit/:_id', (req, res) => {
     cubeService.getOnePopulated(req.params._id)
         .then((data) => {
-            const options = optionsDB.map(row => {   //TODO: is there a better way?
-                if (row.opId == data.difficultyLevel) {
-                    row.isSelected = 'selected=true';
-                }
-                return row;
-            });
+            const options = selectActiveDifficulty(data.difficultyLevel); //TODO: is there a better way?
             res.render('createCube', { ...data, options, type: 'Edit' })
         })
         .catch(err => console.log('Error : ' + err));
