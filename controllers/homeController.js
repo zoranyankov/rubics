@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
     res.redirect('cubes');
 });
 router.get('/about', (req, res) => {
-    res.render('about');
+    res.render('about', {title: 'About Page'});
 });
 
 module.exports = router;

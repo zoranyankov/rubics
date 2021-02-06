@@ -8,7 +8,7 @@ router.get('/:_id/attach', async(req, res) => {
     const currCube = await cubeServices.getOne(_id);
     accessoryService.getAll(_id)
         .then(accessories => {
-            res.render('attachAccessory', {...currCube, accessories, _id });
+            res.render('attachAccessory', {...currCube, accessories, _id, title: 'Attach Accessory' });
         })
         .catch(err => console.log('Error: ' + err));
 });
@@ -27,7 +27,7 @@ router.get('/:prod_id/remove/:_id', (req, res) => {
         .catch(err => console.log('Error: ' + err));
 });
 router.get('/create', (req, res) => {
-    res.render('createAccessory');
+    res.render('createAccessory', {title: 'Attach Accessory'});
 });
 router.post('/create', (req, res) => {
     accessoryService.create(req.body)

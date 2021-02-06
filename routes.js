@@ -11,7 +11,7 @@ router.use('/auth', authController);
 router.use('/cubes', cubeController);
 router.use('/accessories', accessoryController);
 router.get('*', (req, res) => {
-    res.render('404');
+    res.render('404', {title: 'Page Not Found'});
 })
 
 module.exports = router;
