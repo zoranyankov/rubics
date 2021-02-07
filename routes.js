@@ -6,6 +6,10 @@ const authController = require('./controllers/authController');
 const cubeController = require('./controllers/cubeController');
 const accessoryController = require('./controllers/accessoryController');
 
+const auth = require('./middlewares/auth');
+
+router.use(auth());
+
 router.use('/', homeController);
 router.use('/auth', authController);
 router.use('/cubes', cubeController);

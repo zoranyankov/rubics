@@ -4,6 +4,8 @@ const { SALT_ROUNDS, TOKEN_SECRET } = require('../config/config');
 const jwt = require('jsonwebtoken');
 
 async function login(user, pass) {
+    user = user.toLowerCase(); // first option
+    // user = new RegExp(user, 'ig'); // second option
     return User.findOne({ username: user })
         .then((userFound) => {
             if (!userFound) throw { message: 'Wrong User or Password!' };
