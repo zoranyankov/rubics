@@ -67,7 +67,7 @@ router.post('/delete/:prod_id', isLogged, isCreator, (req, res) => {
         .then((data) => res.redirect('/cubes'))
         .catch(err => console.log('Error : ' + err));
 });
-router.get('/clearDB', isSuperUser, (req, res) => {
+router.get('/clearDB', isLogged, isSuperUser, (req, res) => {
     cubeService.clear()
         .then((data) => res.redirect('/cubes'))
         .catch(err => console.log('Error : ' + err));
