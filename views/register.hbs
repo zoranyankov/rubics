@@ -7,12 +7,12 @@
 
       <label for="password">Password</label>
       <input type="password" id="password" name="password">
-      {{#if error}}
-      <span class="error">{{> error}}</span>
-      {{/if}}
       <label for="repeatPassword">Re-Password</label>
       <input type="password" id="repeatPassword" name="repeatPassword">
       <input type="submit" value="Register">
+      {{#if error}}
+      <span class="error">{{> error}}</span>
+      {{/if}}
     </form>
   </div>
 </main>
