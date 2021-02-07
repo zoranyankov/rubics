@@ -14,9 +14,14 @@ async function login(user, pass) {
                     if (!isIdentical) {
                         throw new Error('Wrong User ot PASSword!');
                     }
-                    return token = jwt.sign({ _id: userFound._id, }, TOKEN_SECRET)
+                    let superUser = userFound.username == 'zoroboy' ? true : false;
+                    return token = jwt.sign({ _id: userFound._id, superUser }, TOKEN_SECRET)
                 })
+                .catch(err => console.log('Error: ' + err));
+
         })
+        .catch(err => console.log('Error: ' + err));
+
 }
 
 async function register(username, password) {

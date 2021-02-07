@@ -2,18 +2,19 @@ const router = require('express').Router();
 const User = require('../models/User');
 const authSevice = require('../services/authService');
 const { TOKEN_COOKIE_NAME } = require('../config/config');
+const { isAuthorized, isLogged } = require('../middlewares/guards');
 
 
-router.get('/login', (req, res) => {
+router.get('/login', isAuthorized, (req, res) => {
     res.render('login', { title: 'Login Page' });
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', isAuthorized, (req, res) => {
     const { username, password } = req.body;
     authSevice.login(username, password)
         .then((token) => {
             // console.log(token);
-            res.cookie(TOKEN_COOKIE_NAME, token);
+            res.cookie(TOKEN_COOKIE_NAME, token, {httpOnly: true});
             res.redirect('/cubes');
         })
         .catch(error => {
@@ -21,11 +22,11 @@ router.post('/login', (req, res) => {
         });
 });
 
-router.get('/register', (req, res) => {
+router.get('/register', isAuthorized, (req, res) => {
     res.render('register', { title: 'Register Page' });
 });
 
-router.post('/register', (req, res) => {
+router.post('/register', isAuthorized, (req, res) => {
     const { username: user, password: pass, repeatPassword: repass } = req.body;
     let newUser = user.toLowerCase();
     if (pass !== repass) {
@@ -38,7 +39,6 @@ router.post('/register', (req, res) => {
     }
     User.findOne({ username: newUser })
         .then(userFound => {
-            console.log(userFound);
             if (userFound) {
                 res.render('register', { error: { message: 'Username exists' } });
                 return;
@@ -47,9 +47,10 @@ router.post('/register', (req, res) => {
                 .then((user) => res.redirect('/auth/login'))
                 .catch(error => res.render('register', { error, title: 'Register Page' }))
         })
+        .catch(error => res.render('register', { error, title: 'Register Page' }))
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', isLogged, (req, res) => {
     res.clearCookie(TOKEN_COOKIE_NAME);
     res.redirect('/cubes');
 });

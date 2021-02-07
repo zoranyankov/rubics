@@ -2,9 +2,10 @@ const { Router } = require('express');
 const router = Router();
 const accessoryService = require('../services/accessoryService');
 const cubeServices = require('../services/cubeServices');
+const { isCreator, isSuperUser } = require('../middlewares/guards');
 
-router.get('/:_id/attach', async(req, res) => {
-    const _id = req.params._id;
+router.get('/:prod_id/attach', isCreator, async(req, res) => {
+    const _id = req.params.prod_id;
     const currCube = await cubeServices.getOne(_id);
     accessoryService.getAll(_id)
         .then(accessories => {
@@ -12,14 +13,14 @@ router.get('/:_id/attach', async(req, res) => {
         })
         .catch(err => console.log('Error: ' + err));
 });
-router.post('/:prod_id/attach', (req, res) => {
+router.post('/:prod_id/attach', isCreator, (req, res) => {
     const cubeId = req.params.prod_id;
     const accessoryId = req.body.accessory;
     cubeServices.attachAccessory(cubeId, accessoryId)
         .then(() => res.redirect(`/cubes/details/${cubeId}`))
         .catch(err => console.log('Error: ' + err));
 });
-router.get('/:prod_id/remove/:_id', (req, res) => {
+router.get('/:prod_id/remove/:_id', isCreator, (req, res) => {
     const cubeId = req.params.prod_id;
     const accessoryId = req.params._id;
     cubeServices.detachAccessory(cubeId, accessoryId)
@@ -34,7 +35,8 @@ router.post('/create', (req, res) => {
         .then(data => res.redirect('/cubes'))
         .catch(err => console.log('Error: ' + err));
 });
-router.get('/clearDB', (req, res) => {
+router.get('/clearDB', isSuperUser, (req, res) => {
+    console.log('clearACCS');
     accessoryService.clear()
         .then((data) => res.redirect('/cubes'))
         .catch(err => console.log('Error : ' + err));
