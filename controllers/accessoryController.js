@@ -36,7 +36,6 @@ router.post('/create', (req, res) => {
         .catch(err => console.log('Error: ' + err));
 });
 router.get('/clearDB', isSuperUser, (req, res) => {
-    console.log('clearACCS');
     accessoryService.clear()
         .then((data) => res.redirect('/cubes'))
         .catch(err => console.log('Error : ' + err));
