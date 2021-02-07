@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
     development: {
         PORT: process.env.PORT || 5050,
         DB_PATH: process.env.DB_PATH.trim() || 'mongodb://localhost:27017/CubesDB',
@@ -14,4 +14,5 @@ module.exports = {
         TOKEN_SECRET: 'verySecretToken',
         TOKEN_COOKIE_NAME: 'sid',
     }
-} 
+}
+module.exports = config[process.env.NODE_ENV.trim() || 'development'];

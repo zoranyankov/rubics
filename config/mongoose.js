@@ -1,5 +1,4 @@
-const env = process.env.NODE_ENV.trim() || 'development';
-const config = require('./config')[env];
+const config = require('./config');
 const mongoose = require('mongoose');
 
 function mongooseConfig() {

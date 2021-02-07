@@ -1,9 +1,8 @@
 const express = require('express');
-const env = process.env.NODE_ENV.trim() || 'development';
 
 const app = express();
 const routes = require('./routes');
-const config = require('./config/config')[env];
+const config = require('./config/config');
 
 require('./config/express')(app);
 require('./config/mongoose.js')();
