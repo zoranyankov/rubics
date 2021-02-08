@@ -17,10 +17,12 @@ async function login(user, pass) {
                     let superUser = userFound.username == 'zoroboy' ? true : false;
                     return token = jwt.sign({ _id: userFound._id, superUser }, TOKEN_SECRET)
                 })
-                .catch(err => console.log('Error: ' + err));
+                // .catch(error => res.status(404).render('404', error));
+                // .catch(err => console.log('Error: ' + err));
 
         })
-        .catch(err => console.log('Error: ' + err));
+        // .catch(error => res.status(404).render('404', error));
+        // .catch(err => console.log('Error: ' + err));
 
 }
 

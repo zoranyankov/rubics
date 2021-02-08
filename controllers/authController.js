@@ -14,7 +14,7 @@ router.post('/login', isAuthorized, (req, res) => {
     authSevice.login(username, password)
         .then((token) => {
             // console.log(token);
-            res.cookie(TOKEN_COOKIE_NAME, token, {httpOnly: true});
+            res.cookie(TOKEN_COOKIE_NAME, token, { httpOnly: true });
             res.redirect('/cubes');
         })
         .catch(error => {
