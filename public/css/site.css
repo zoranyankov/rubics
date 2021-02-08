@@ -337,6 +337,16 @@ footer {
 
 }
 
+.wellcome {
+    float: right;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    margin: 0 1em;
+    padding: 1rem;
+}
+
 /*Animations & Transitions
 */
 

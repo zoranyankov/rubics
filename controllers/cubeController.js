@@ -21,7 +21,7 @@ router.get('/create', isLogged, (req, res) => {
     res.render('createCube', { options, title: 'Create Cube Page' });
 });
 router.post('/create', isLogged, (req, res) => {
-    cubeService.create({ ...req.body, creatorId: req.user._id})
+    cubeService.create({ ...req.body, creatorId: req.user._id, creatorName: req.user.name})
         .then(data => {
             // console.log(data);
             res.redirect('/cubes');

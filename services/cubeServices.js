@@ -35,11 +35,11 @@ function edit(_id) {
 }
 
 function update(_id, data) {
-    return Cube.findByIdAndUpdate(_id, data).populate('accessories').lean();
+    return Cube.findByIdAndUpdate(_id, data, {useFindAndModify: false}).populate('accessories').lean();
 }
 
 function removeOne(_id) {
-    return Cube.findByIdAndRemove(_id);
+    return Cube.findByIdAndRemove(_id, {useFindAndModify: false});
 }
 
 async function attachAccessory(cubeId, accessoryId) {

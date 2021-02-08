@@ -7,9 +7,15 @@
         <li><a href="/cubes/create">Add a Cube</a></li>
         <li><a href="/accessories/create">Add Accessory</a></li>
         <li><a href="/auth/logout">Logout</a></li>
+        <li class="wellcome">
+            <h4>User {{loggedUser}} </br> is logged</h4>
+        </li>
         {{else}}
         <li><a href="/auth/login">Login</a></li>
         <li><a href="/auth/register">Register</a></li>
+        <li class="wellcome">
+            <h4>Guest </br> view</h4>
+        </li>
         {{/if}}
     </ul>
 </header>

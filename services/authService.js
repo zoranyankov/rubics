@@ -15,7 +15,7 @@ async function login(user, pass) {
                         throw new Error('Wrong User ot PASSword!');
                     }
                     let superUser = userFound.username == 'zoroboy' ? true : false;
-                    return token = jwt.sign({ _id: userFound._id, superUser }, TOKEN_SECRET)
+                    return token = jwt.sign({ _id: userFound._id, name: userFound.username, superUser }, TOKEN_SECRET)
                 })
                 // .catch(error => res.status(404).render('404', error));
                 // .catch(err => console.log('Error: ' + err));
