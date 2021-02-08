@@ -11,9 +11,10 @@
       <label for="difficulty">Difficulty</label>
       <select id="difficulty" name="difficultyLevel" disabled="true" />
       {{#each options}}
-        {{>option}}
+      {{>option}}
       {{/each}}
       </select>
+      <a class="btn back" href="/cubes">Back</a>
       <input type="submit" value="Delete">
     </form>
   </div>

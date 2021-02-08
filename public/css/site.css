@@ -206,7 +206,7 @@ input[type=submit] {
     display: inline-block;
     font-size: 18px;
     width: 50%;
-    margin: 5px 5px 5px 25%;
+    margin: 5px 0.5 5px 25%;
     color: white;
     text-transform: uppercase;
     border-radius: 4px;
@@ -216,7 +216,7 @@ input[value=Delete] {
     background-color: red;
 }
 
-div.form a:last-of-type:hover {
+a.delete:hover {
     background-color:red;
 }
 
@@ -238,6 +238,18 @@ div.form a:last-of-type:hover {
 input[type=submit]:hover {
     background-color: #718F94;
     cursor: pointer;
+}
+
+a.attach:hover, input[value=Attach]:hover {
+    background-color:green;
+}
+
+a.back:hover, input[value=Back]:hover {
+    background-color:blue;
+}
+
+a.edit:hover, input[value=Edit]:hover {
+    background-color:blueviolet;
 }
 
 input[value=Delete]:hover {

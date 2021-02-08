@@ -4,9 +4,10 @@
     <div class="details">
         <p><span>Description:</span>{{description}}</p>
         <p><span>Difficulty level:</span> {{difficultyLevel}}</p>
-        <a class="btn" href="/cubes">Back</a>
+        <a class="btn back" href="/cubes">Back</a>
         {{#if isCreator}}
-        <a class="btn" href="/accessories/{{_id}}/attach">Attach Accessory</a>\
+        <a class="btn edit" href="/cubes/edit/{{_id}}">Edit</a>
+        <a class="btn attach" href="/accessories/{{_id}}/attach">Attach Accessory</a>
         {{/if}}
     </div>
     <h2>Accessories</h2>
