@@ -117,7 +117,7 @@ main a.btn {
     color: white;
 }
 
-a.btn:hover{
+a.btn:hover {
     text-decoration: underline;
 }
 
@@ -217,10 +217,11 @@ input[value=Delete] {
 }
 
 a.delete:hover {
-    background-color:red;
+    background-color: red;
 }
 
-#clearCubes, #clearAccessories {
+#clearCubes,
+#clearAccessories {
     background-color: red;
     border: none;
     padding: 8px;
@@ -240,16 +241,19 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
-a.attach:hover, input[value=Attach]:hover {
-    background-color:green;
+a.attach:hover,
+input[value=Attach]:hover {
+    background-color: green;
 }
 
-a.back:hover, input[value=Back]:hover {
-    background-color:blue;
+a.back:hover,
+input[value=Back]:hover {
+    background-color: blue;
 }
 
-a.edit:hover, input[value=Edit]:hover {
-    background-color:blueviolet;
+a.edit:hover,
+input[value=Edit]:hover {
+    background-color: blueviolet;
 }
 
 input[value=Delete]:hover {
@@ -293,7 +297,7 @@ h3 {
     text-align: center;
 }
 
-.accessories .accessory{
+.accessories .accessory {
     display: inline-block;
     background-color: #f3f3f2;
     width: 20%;
@@ -304,7 +308,8 @@ h3 {
     box-shadow: 0px 0px 20px 5px rgb(255, 153, 0);
 }
 
-.accessories, .italic{
+.accessories,
+.italic {
     text-align: center;
     font-style: italic;
 }
@@ -334,7 +339,6 @@ footer {
     margin-left: 12%;
     margin-top: 0%;
     box-shadow: none;
-
 }
 
 .wellcome {
@@ -346,6 +350,22 @@ footer {
     margin: 0 1em;
     padding: 1rem;
 }
+
+#notifications {
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    width: 50%;
+    padding: 0.5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background: rgb(231, 118, 118);
+    color: white;
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
 
 /*Animations & Transitions
 */

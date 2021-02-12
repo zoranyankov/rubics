@@ -45,7 +45,13 @@ router.post('/register', isAuthorized, (req, res) => {
             }
             authSevice.register(newUser, pass)
                 .then((user) => res.redirect('/auth/login'))
-                .catch(error => res.render('register', { error, title: 'Register Page' }))
+                .catch(err => {
+                    console.log('start');
+                    console.log(err.errors.username);
+                    console.log('end');
+                    let error = err.errors.username;
+                    res.render('register', { error, title: 'Register Page' })
+                })
         })
         .catch(error => res.render('register', { error, title: 'Register Page' }))
 });
