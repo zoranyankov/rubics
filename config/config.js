@@ -6,6 +6,7 @@ const config = {
         TOKEN_SECRET: 'verySecretToken',
         TOKEN_COOKIE_NAME: 'sid',
         ENGLISH_ALFANUMERIC_PATT: /^[a-zA-Z0-9]+$/,
+        ENGLISH_ALFANUMSPACE_PATT: /^[a-zA-Z0-9 ]+$/,
     },
     production: {
         PORT: process.env.PORT || 80,
@@ -15,6 +16,7 @@ const config = {
         TOKEN_SECRET: 'verySecretToken',
         TOKEN_COOKIE_NAME: 'sid',
         ENGLISH_ALFANUMERIC_PATT: /^[a-zA-Z0-9]+$/,
+        ENGLISH_ALFANUMSPACE_PATT: /^[a-zA-Z0-9 ]+$/,
     }
 }
 module.exports = config[process.env.NODE_ENV.trim() || 'development'];

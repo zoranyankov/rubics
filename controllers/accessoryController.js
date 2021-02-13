@@ -3,6 +3,7 @@ const router = Router();
 const accessoryService = require('../services/accessoryService');
 const cubeServices = require('../services/cubeServices');
 const { isCreator, isSuperUser } = require('../middlewares/guards');
+const { ENGLISH_ALFANUMSPACE_PATT } = require('../config/config');
 
 router.get('/:prod_id/attach', isCreator, async(req, res) => {
     const _id = req.params.prod_id;
@@ -31,9 +32,15 @@ router.get('/create', (req, res) => {
     res.render('createAccessory', {title: 'Attach Accessory'});
 });
 router.post('/create', (req, res) => {
+    // console.log(req.body);
+    // const {name, description, imageUrl} = req.body;
+
     accessoryService.create(req.body)
         .then(data => res.redirect('/cubes'))
-        .catch(err => console.log('Error: ' + err));
+        .catch(err => {
+            let errors = Object.keys(err.errors).map(x => ({ message: err.errors[x].message }));
+            res.render('createAccessory', {errors, ...req.body, title: 'Attach Accessory'})
+        });
 });
 router.get('/clearDB', isSuperUser, (req, res) => {
     accessoryService.clear()

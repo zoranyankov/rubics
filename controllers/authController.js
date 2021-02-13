@@ -12,12 +12,10 @@ router.get('/login', isAuthorized, (req, res) => {
 router.post('/login', isAuthorized, (req, res) => {
     const { username, password } = req.body;
     if (username.length < 5) {
-        console.log('too short');
         res.render('login', { errors: [{ message: 'Username too short' }] , title: 'Login page', username});
         return;
     }
     if (password.length < 8) {
-        console.log('too short');
         res.render('login', { errors: [{ message: 'Password too short' }] , title: 'Login page', username});
         return;
     }
@@ -52,7 +50,6 @@ router.post('/register', isAuthorized, (req, res, next) => {
     const { username: user, password: pass, repeatPassword: repass } = req.body;
     let newUser = user.toLowerCase();
     if (pass.length < 8) {
-        console.log('too short');
         res.render('register', { errors: [{ message: 'Password too short' }] , title: 'Register page', username: user});
         return;
     }
