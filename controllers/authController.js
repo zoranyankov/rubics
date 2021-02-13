@@ -11,6 +11,26 @@ router.get('/login', isAuthorized, (req, res) => {
 
 router.post('/login', isAuthorized, (req, res) => {
     const { username, password } = req.body;
+    if (username.length < 5) {
+        console.log('too short');
+        res.render('login', { errors: [{ message: 'Username too short' }] , title: 'Login page', username});
+        return;
+    }
+    if (password.length < 8) {
+        console.log('too short');
+        res.render('login', { errors: [{ message: 'Password too short' }] , title: 'Login page', username});
+        return;
+    }
+    if (!username.match(ENGLISH_ALFANUMERIC_PATT)) {
+        res.render('login', { errors: [{ message: `Username ${username} is invalid!` }], title: 'Login page'});
+        // next( {message: `Username ${username} is invalid!` });
+        return;
+    }
+    if (!password.match(ENGLISH_ALFANUMERIC_PATT)) {
+        res.render('login', { errors: [{ message: `Password ${password} is invalid!` }], title: 'Login page'});
+        // next( {message: `Password ${password} is invalid!` });
+        return;
+    }
     authSevice.login(username, password)
         .then((token) => {
             // console.log(token);
@@ -43,11 +63,11 @@ router.post('/register', isAuthorized, (req, res, next) => {
     User.findOne({ username: newUser })
         .then(userFound => {
             if (userFound) {
-                res.render('register', { errors: [{ message: 'Username exists' }] });
+                res.render('register', { errors: [{ message: 'Username exists' }], title: 'Register page' });
                 return;
             }
             if (!pass.match(ENGLISH_ALFANUMERIC_PATT)) {
-                res.render('register', { errors: [{ message: `Password ${pass} is invalid!` }]});
+                res.render('register', { errors: [{ message: `Password ${pass} is invalid!` }], title: 'Register page'});
                 // next( {message: `Password ${pass} is invalid!` });
                 return;
             }
