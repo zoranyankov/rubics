@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const authSevice = require('../services/authService');
-const { TOKEN_COOKIE_NAME } = require('../config/config');
+const { TOKEN_COOKIE_NAME, ENGLISH_ALFANUMERIC_PATT } = require('../config/config');
 const { isAuthorized, isLogged } = require('../middlewares/guards');
 
 
@@ -18,7 +18,9 @@ router.post('/login', isAuthorized, (req, res) => {
             res.redirect('/cubes');
         })
         .catch(error => {
-            res.status('404').render('login', { error, title: 'Login Page' })
+            
+            let errors = {errors: {message: error.message}};
+            res.status('404').render('login', { errors, title: 'Login Page' })
         });
 });
 
@@ -26,34 +28,38 @@ router.get('/register', isAuthorized, (req, res) => {
     res.render('register', { title: 'Register Page' });
 });
 
-router.post('/register', isAuthorized, (req, res) => {
+router.post('/register', isAuthorized, (req, res, next) => {
     const { username: user, password: pass, repeatPassword: repass } = req.body;
     let newUser = user.toLowerCase();
-    if (pass !== repass) {
-        res.render('register', { error: { message: 'Passwords missmatch' } });
+    if (pass.length < 8) {
+        console.log('too short');
+        res.render('register', { errors: [{ message: 'Password too short' }] , title: 'Register page', username: user});
         return;
     }
-    if (pass.length < 6) {
-        res.render('register', { error: { message: 'Passwords too short' } });
+    if (pass !== repass) {
+        res.render('register', { errors: [{ message: 'Passwords missmatch'}] , title: 'Register page', username: user  });
         return;
     }
     User.findOne({ username: newUser })
         .then(userFound => {
             if (userFound) {
-                res.render('register', { error: { message: 'Username exists' } });
+                res.render('register', { errors: [{ message: 'Username exists' }] });
                 return;
             }
-            authSevice.register(newUser, pass)
+            if (!pass.match(ENGLISH_ALFANUMERIC_PATT)) {
+                res.render('register', { errors: [{ message: `Password ${pass} is invalid!` }]});
+                // next( {message: `Password ${pass} is invalid!` });
+                return;
+            }
+            return authSevice.register(newUser, pass)
                 .then((user) => res.redirect('/auth/login'))
                 .catch(err => {
-                    console.log('start');
-                    console.log(err.errors.username);
-                    console.log('end');
-                    let error = err.errors.username;
-                    res.render('register', { error, title: 'Register Page' })
+                    let errors = Object.keys(err.errors).map(x => ({ message: err.errors[x].message }));
+                    res.render('register', { errors, title: 'Register Page' })
+                    // next(err);
                 })
         })
-        .catch(error => res.render('register', { error, title: 'Register Page' }))
+        .catch(err => next(err));
 });
 
 router.get('/logout', isLogged, (req, res) => {
